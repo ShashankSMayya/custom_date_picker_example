@@ -1,4 +1,5 @@
 import 'package:custom_date_picker_example/app_colors.dart';
+import 'package:custom_date_picker_example/custom_date_picker/custom_calendar_new.dart';
 import 'package:custom_date_picker_example/custom_date_picker/header_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -28,12 +29,10 @@ class _CustomDatePickerDialogState extends State<CustomDatePickerDialog> {
           children: [
             const HeaderWidget(),
             const SizedBox(height: 10),
-            CalendarDatePicker(
-              initialDate: DateTime.now(),
-              firstDate: DateTime.now(),
-              lastDate: DateTime(2100),
-              onDateChanged: (value) {},
-            ),
+            CustomCalendarNew(
+                initialDate: DateTime.now(),
+                firstDate: DateTime.now(),
+                lastDate: DateTime(2100)),
             Theme(
               data: ThemeData(
                 outlinedButtonTheme: OutlinedButtonThemeData(
@@ -74,13 +73,15 @@ class _CustomDatePickerDialogState extends State<CustomDatePickerDialog> {
                       width: 10,
                     ),
                     OutlinedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pop(context, DateTime.now());
+                      },
                       style: OutlinedButton.styleFrom(
                         backgroundColor: AppColors.primaryBlue,
                         foregroundColor: AppColors.secondaryBlue,
                         minimumSize: const Size(80, 40),
                       ),
-                      child: Text('Save'),
+                      child: const Text('Save'),
                     ),
                   ],
                 ),
