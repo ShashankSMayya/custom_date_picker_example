@@ -684,6 +684,8 @@ class _DayPickerState extends State<_DayPicker> {
   /// _ _ _ _ 1 2 3
   /// 4 5 6 7 8 9 10
   /// ```
+  ///
+  /// modified to show Sun, Mon, Tue, Wed, Thu, Fri, Sat
   List<Widget> _dayHeaders(
       TextStyle? headerStyle, MaterialLocalizations localizations) {
     final List<Widget> result = <Widget>[];
@@ -707,16 +709,23 @@ class _DayPickerState extends State<_DayPicker> {
     }
   }
 
+  int _getNextMonthDaysToFill(int year, int month) {
+    final lastWeekDayOfCurrentMonth = DateTime.now().weekday;
+    final firstWeekDayOfNextMonth = DateTime(year, month + 1, 1).weekday;
+    if (lastWeekDayOfCurrentMonth == DateTime.sunday) {
+      return 0;
+    }
+    return 7 - firstWeekDayOfNextMonth;
+  }
+
   @override
   Widget build(BuildContext context) {
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
     final MaterialLocalizations localizations =
         MaterialLocalizations.of(context);
     final TextTheme textTheme = Theme.of(context).textTheme;
-    final TextStyle? headerStyle = textTheme.caption?.apply(
-      color: colorScheme.onSurface.withOpacity(0.60),
-    );
-    final TextStyle dayStyle = textTheme.caption!;
+    final TextStyle headerStyle = textTheme.caption!.copyWith(color: AppColors.black,fontSize: 14);
+    final TextStyle dayStyle = textTheme.caption!.copyWith(fontSize: 14);
     final Color enabledDayColor = colorScheme.onSurface.withOpacity(0.87);
     final Color disabledDayColor = colorScheme.onSurface.withOpacity(0.38);
     final Color selectedDayColor = colorScheme.onPrimary;
@@ -728,6 +737,7 @@ class _DayPickerState extends State<_DayPicker> {
 
     final int daysInMonth = DateUtils.getDaysInMonth(year, month);
     final int previousMonthDays = _getPreviousMonthDays(year, month);
+    final int nextMonthDaysToFill = _getNextMonthDaysToFill(year, month);
 
     final int dayOffset = DateUtils.firstDayOffset(year, month, localizations);
 
@@ -735,11 +745,17 @@ class _DayPickerState extends State<_DayPicker> {
     // 1-based day of month, e.g. 1-31 for January, and 1-29 for February on
     // a leap year.
     int day = -dayOffset;
-    while (day < daysInMonth) {
+    while (day < daysInMonth + nextMonthDaysToFill) {
       day++;
       if (day < 1) {
         Widget dayWidget = Center(
           child: Text(localizations.formatDecimal(previousMonthDays + day),
+              style: dayStyle.apply(color: disabledDayColor)),
+        );
+        dayItems.add(dayWidget);
+      } else if (day > daysInMonth) {
+        Widget dayWidget = Center(
+          child: Text(localizations.formatDecimal(day - daysInMonth),
               style: dayStyle.apply(color: disabledDayColor)),
         );
         dayItems.add(dayWidget);

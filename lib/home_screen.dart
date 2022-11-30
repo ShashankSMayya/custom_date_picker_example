@@ -36,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
               OutlinedButton(
                 onPressed: () async {
                   final date = await showCustomDatePicker(
-                      context: context, preset: Preset.none);
+                      context: context, preset: Preset.none, selectedDate: _date1);
                   if (date != null) {
                     setState(() {
                       _date1 = date;
@@ -56,7 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
               OutlinedButton(
                 onPressed: () async {
                   final date = await showCustomDatePicker(
-                      context: context, preset: Preset.four);
+                      context: context, preset: Preset.four, selectedDate: _date2);
                   if (date != null) {
                     setState(() {
                       _date2 = date;
@@ -73,7 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
               OutlinedButton(
                 onPressed: () async {
                   final date = await showCustomDatePicker(
-                      context: context, preset: Preset.six);
+                      context: context, preset: Preset.six,selectedDate: _date3);
                   if (date != null) {
                     setState(() {
                       _date3 = date;

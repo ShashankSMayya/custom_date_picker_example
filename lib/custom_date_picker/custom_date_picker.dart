@@ -8,8 +8,10 @@ enum Preset { none, four, six }
 
 class CustomDatePickerDialog extends StatelessWidget {
   final Preset preset;
+  final DateTime? selectedDate;
 
-  const CustomDatePickerDialog({Key? key, required this.preset})
+  const CustomDatePickerDialog(
+      {Key? key, required this.preset, this.selectedDate})
       : super(key: key);
 
   @override
@@ -30,7 +32,7 @@ class CustomDatePickerDialog extends StatelessWidget {
               const SizedBox(height: 10),
             ],
             CustomCalendar(
-              initialDate: DateTime.now(),
+              initialDate: selectedDate ?? DateTime.now(),
               firstDate: DateTime(DateTime.now().year, DateTime.now().month),
               lastDate: DateTime(2100),
               preset: preset,
@@ -43,14 +45,16 @@ class CustomDatePickerDialog extends StatelessWidget {
 }
 
 Future<DateTime?> showCustomDatePicker(
-    {required BuildContext context, required Preset preset}) async {
+    {required BuildContext context,
+    required Preset preset,
+    DateTime? selectedDate}) async {
   return await showDialog(
     context: context,
     builder: (_) => BlocProvider(
       create: (context) => PresetCubit(
         index: preset == Preset.six ? 1 : 0,
       ),
-      child: CustomDatePickerDialog(preset: preset),
+      child: CustomDatePickerDialog(preset: preset, selectedDate: selectedDate),
     ),
   );
 }
