@@ -22,7 +22,7 @@ class HeaderWidget extends StatelessWidget {
                 children: [
                   Expanded(
                     child: HeaderItem(
-                      title: 'Never Ends',
+                      title: 'Never ends',
                       isSelected: state == 0,
                       onTap: () =>
                           context.read<PresetCubit>().updatePresetIndex(0),
@@ -33,7 +33,7 @@ class HeaderWidget extends StatelessWidget {
                   ),
                   Expanded(
                     child: HeaderItem(
-                      title: '15 Days Later',
+                      title: '15 days later',
                       isSelected: state == 1,
                       onTap: () =>
                           context.read<PresetCubit>().updatePresetIndex(1),
@@ -48,7 +48,7 @@ class HeaderWidget extends StatelessWidget {
                 children: [
                   Expanded(
                     child: HeaderItem(
-                        title: '30 Days Later',
+                        title: '30 days later',
                         isSelected: state == 2,
                         onTap: () =>
                             context.read<PresetCubit>().updatePresetIndex(2)),
@@ -58,7 +58,7 @@ class HeaderWidget extends StatelessWidget {
                   ),
                   Expanded(
                     child: HeaderItem(
-                        title: '60 Days Later',
+                        title: '60 days later',
                         isSelected: state == 3,
                         onTap: () =>
                             context.read<PresetCubit>().updatePresetIndex(3)),

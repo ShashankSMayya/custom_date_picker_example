@@ -24,7 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               const Spacer(),
               Text(
-                'Calendar Widgets',
+                'Calendar widgets',
                 style: Theme.of(context)
                     .textTheme
                     .titleMedium
@@ -43,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     });
                   }
                 },
-                child: const Text('Without presets'),
+                child: const Text('Without preset'),
               ),
               SelectedDateWidget(
                 selectedDate: _date1,
