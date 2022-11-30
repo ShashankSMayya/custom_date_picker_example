@@ -1,7 +1,7 @@
 import 'dart:math' as math;
 
 import 'package:custom_date_picker_example/app_colors.dart';
-import 'package:custom_date_picker_example/bloc/preset_cubit.dart';
+import 'package:custom_date_picker_example/cubits/preset_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -500,7 +500,7 @@ class _MonthPickerState extends State<_MonthPicker> {
                     _localizations.formatMonthYear(_currentMonth),
                     style: const TextStyle(
                       fontSize: 18,
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
                   IconButton(
@@ -548,7 +548,7 @@ class _MonthPickerState extends State<_MonthPicker> {
                 child: Row(
                   children: [
                     const Icon(
-                      Icons.calendar_month_rounded,
+                      Icons.event,
                       color: AppColors.primaryBlue,
                     ),
                     const SizedBox(

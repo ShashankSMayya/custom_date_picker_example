@@ -28,7 +28,7 @@ class SelectedDateWidget extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           const Icon(
-            Icons.calendar_month_rounded,
+            Icons.event,
             color: AppColors.primaryBlue,
             size: 20,
           ),
