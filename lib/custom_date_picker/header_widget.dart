@@ -19,19 +19,25 @@ class HeaderWidget extends StatelessWidget {
           children: [
             if (preset == Preset.four) ...[
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  HeaderItem(
-                    title: 'Never Ends',
-                    isSelected: state == 0,
-                    onTap: () =>
-                        context.read<PresetCubit>().updatePresetIndex(0),
+                  Expanded(
+                    child: HeaderItem(
+                      title: 'Never Ends',
+                      isSelected: state == 0,
+                      onTap: () =>
+                          context.read<PresetCubit>().updatePresetIndex(0),
+                    ),
                   ),
-                  HeaderItem(
-                    title: '15 Days Later',
-                    isSelected: state == 1,
-                    onTap: () =>
-                        context.read<PresetCubit>().updatePresetIndex(1),
+                  const SizedBox(
+                    width: 16,
+                  ),
+                  Expanded(
+                    child: HeaderItem(
+                      title: '15 Days Later',
+                      isSelected: state == 1,
+                      onTap: () =>
+                          context.read<PresetCubit>().updatePresetIndex(1),
+                    ),
                   ),
                 ],
               ),
@@ -39,70 +45,95 @@ class HeaderWidget extends StatelessWidget {
                 height: 16,
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  HeaderItem(
-                      title: '30 Days Later',
-                      isSelected: state == 2,
-                      onTap: () =>
-                          context.read<PresetCubit>().updatePresetIndex(2)),
-                  HeaderItem(
-                      title: '60 Days Later',
-                      isSelected: state == 3,
-                      onTap: () =>
-                          context.read<PresetCubit>().updatePresetIndex(3)),
+                  Expanded(
+                    child: HeaderItem(
+                        title: '30 Days Later',
+                        isSelected: state == 2,
+                        onTap: () =>
+                            context.read<PresetCubit>().updatePresetIndex(2)),
+                  ),
+                  const SizedBox(
+                    width: 16,
+                  ),
+                  Expanded(
+                    child: HeaderItem(
+                        title: '60 Days Later',
+                        isSelected: state == 3,
+                        onTap: () =>
+                            context.read<PresetCubit>().updatePresetIndex(3)),
+                  ),
                 ],
               )
             ] else ...[
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  HeaderItem(
-                      title: 'Yesterday',
-                      isSelected: state == 0,
-                      onTap: () =>
-                          context.read<PresetCubit>().updatePresetIndex(0)),
-                  HeaderItem(
-                      title: 'Today',
-                      isSelected: state == 1,
-                      onTap: () =>
-                          context.read<PresetCubit>().updatePresetIndex(1)),
+                  Expanded(
+                    child: HeaderItem(
+                        title: 'Yesterday',
+                        isSelected: state == 0,
+                        onTap: () =>
+                            context.read<PresetCubit>().updatePresetIndex(0)),
+                  ),
+                  const SizedBox(
+                    width: 16,
+                  ),
+                  Expanded(
+                    child: HeaderItem(
+                        title: 'Today',
+                        isSelected: state == 1,
+                        onTap: () =>
+                            context.read<PresetCubit>().updatePresetIndex(1)),
+                  ),
                 ],
               ),
               const SizedBox(
                 height: 16,
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  HeaderItem(
-                      title: 'Tomorrow',
-                      isSelected: state == 2,
-                      onTap: () =>
-                          context.read<PresetCubit>().updatePresetIndex(2)),
-                  HeaderItem(
-                      title: 'This Saturday',
-                      isSelected: state == 3,
-                      onTap: () =>
-                          context.read<PresetCubit>().updatePresetIndex(3)),
+                  Expanded(
+                    child: HeaderItem(
+                        title: 'Tomorrow',
+                        isSelected: state == 2,
+                        onTap: () =>
+                            context.read<PresetCubit>().updatePresetIndex(2)),
+                  ),
+                  const SizedBox(
+                    width: 16,
+                  ),
+                  Expanded(
+                    child: HeaderItem(
+                        title: 'This Saturday',
+                        isSelected: state == 3,
+                        onTap: () =>
+                            context.read<PresetCubit>().updatePresetIndex(3)),
+                  ),
                 ],
               ),
               const SizedBox(
                 height: 16,
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  HeaderItem(
-                      title: 'This Sunday',
-                      isSelected: state == 4,
+                  Expanded(
+                    child: HeaderItem(
+                        title: 'This Sunday',
+                        isSelected: state == 4,
+                        onTap: () =>
+                            context.read<PresetCubit>().updatePresetIndex(4)),
+                  ),
+                  const SizedBox(
+                    width: 16,
+                  ),
+                  Expanded(
+                    child: HeaderItem(
+                      title:
+                          'Next ${DateFormat('EEEE').format(DateTime.now())}',
+                      isSelected: state == 5,
                       onTap: () =>
-                          context.read<PresetCubit>().updatePresetIndex(4)),
-                  HeaderItem(
-                    title: 'Next ${DateFormat('EEEE').format(DateTime.now())}',
-                    isSelected: state == 5,
-                    onTap: () =>
-                        context.read<PresetCubit>().updatePresetIndex(5),
+                          context.read<PresetCubit>().updatePresetIndex(5),
+                    ),
                   ),
                 ],
               )

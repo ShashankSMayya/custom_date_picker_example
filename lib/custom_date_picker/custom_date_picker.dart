@@ -20,8 +20,9 @@ class CustomDatePickerDialog extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
       ),
+      insetPadding: const EdgeInsets.symmetric(horizontal: 16),
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 4),
+        padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 12),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [

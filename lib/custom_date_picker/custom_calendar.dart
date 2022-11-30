@@ -104,7 +104,21 @@ class _CustomCalendarState extends State<CustomCalendar> {
             // Yesterday
             case 0:
               DateTime newDate = today.subtract(const Duration(days: 1));
-              _handleDayChanged(newDate);
+              if (!DateUtils.isSameMonth(newDate, today)) {
+                ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content:
+                        Text('You can\'t select a date from the last month'),
+                  ),
+                );
+                Future.delayed(const Duration(milliseconds: 100), () {
+                  context.read<PresetCubit>().updatePresetIndex(1);
+                });
+                return;
+              } else {
+                _handleDayChanged(newDate);
+              }
               break;
             //Today
             case 1:
@@ -401,7 +415,6 @@ class _MonthPickerState extends State<_MonthPicker> {
   Widget build(BuildContext context) {
     final Color controlColor =
         Theme.of(context).colorScheme.onSurface.withOpacity(0.60);
-
     return BlocListener<PresetCubit, int>(
       listener: (context, state) {
         final DateTime today = DateTime.now();
@@ -432,12 +445,6 @@ class _MonthPickerState extends State<_MonthPicker> {
             case 0:
               newDate = today.subtract(const Duration(days: 1));
               if (!DateUtils.isSameMonth(newDate, today)) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content:
-                        Text('You can\'t select a date from the last month'),
-                  ),
-                );
                 return;
               }
               break;
@@ -724,7 +731,8 @@ class _DayPickerState extends State<_DayPicker> {
     final MaterialLocalizations localizations =
         MaterialLocalizations.of(context);
     final TextTheme textTheme = Theme.of(context).textTheme;
-    final TextStyle headerStyle = textTheme.caption!.copyWith(color: AppColors.black,fontSize: 14);
+    final TextStyle headerStyle =
+        textTheme.caption!.copyWith(color: AppColors.black, fontSize: 14);
     final TextStyle dayStyle = textTheme.caption!.copyWith(fontSize: 14);
     final Color enabledDayColor = colorScheme.onSurface.withOpacity(0.87);
     final Color disabledDayColor = colorScheme.onSurface.withOpacity(0.38);
